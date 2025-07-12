@@ -1,0 +1,145 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0rqulkg34f4"]
+
+[ext_resource type="Script" uid="uid://joq6y8myt6pp" path="res://Scenes/Fazenda/principal.gd" id="1_r8ljs"]
+[ext_resource type="PackedScene" uid="uid://chdrj7nawoihf" path="res://Scenes/Personagem/mariozinho.tscn" id="2_c6yxb"]
+[ext_resource type="PackedScene" uid="uid://d0seevesvct3l" path="res://Scenes/Fazenda/mapa.tscn" id="3_c6yxb"]
+[ext_resource type="Script" uid="uid://dlrcrnqaowofv" path="res://Scripts/Personagem/mariozinho.gd" id="3_r8ljs"]
+[ext_resource type="FontFile" uid="uid://bdb4gd21bmoqq" path="res://Assets/Fonts/Pixel NES.otf" id="5_v83kh"]
+[ext_resource type="PackedScene" uid="uid://dmd3waogult7r" path="res://Scenes/Personagem/slime.tscn" id="6_wdrlh"]
+
+[node name="Principal" type="Node2D"]
+y_sort_enabled = true
+texture_filter = 1
+script = ExtResource("1_r8ljs")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_c6yxb")]
+y_sort_enabled = true
+position = Vector2(255, 345)
+collision_mask = 1
+script = ExtResource("3_r8ljs")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+y_sort_enabled = true
+position = Vector2(-4, -4)
+rotation = -4.64258
+scale = Vector2(0.565, 0.565)
+zoom = Vector2(2.035, 2.035)
+position_smoothing_enabled = true
+position_smoothing_speed = 7.295
+
+[node name="Mapa" parent="." instance=ExtResource("3_c6yxb")]
+position = Vector2(-50, -27)
+
+[node name="PauseGame" type="CanvasLayer" parent="."]
+
+[node name="Pause" type="Control" parent="PauseGame"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="PauseGame/Pause"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0896, 0.56, 0.31696, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PauseGame/Pause"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 182.0
+offset_top = 322.0
+offset_right = 456.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.965, 0.965)
+size_flags_vertical = 8
+alignment = 1
+
+[node name="Feito por" type="Label" parent="PauseGame/Pause/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_v83kh")
+theme_override_font_sizes/font_size = 16
+text = "Feito por"
+
+[node name="Julio Emanuel" type="Button" parent="PauseGame/Pause/HBoxContainer" groups=["button"]]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_v83kh")
+text = "Julio Emanuel"
+flat = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseGame/Pause"]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 35.0
+offset_right = 531.0
+offset_bottom = 288.0
+alignment = 1
+
+[node name="Label" type="Label" parent="PauseGame/Pause/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("5_v83kh")
+theme_override_font_sizes/font_size = 55
+text = "MARIOZINHO"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PauseGame/Pause/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseGame/Pause/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="PauseGame/Pause/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_v83kh")
+text = "Mover-se - A W S D"
+
+[node name="Label2" type="Label" parent="PauseGame/Pause/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_v83kh")
+text = "Atacar - Espaço"
+
+[node name="Label3" type="Label" parent="PauseGame/Pause/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_v83kh")
+text = "Abrir Inventário - TAB"
+
+[node name="Voltar" type="Button" parent="PauseGame/Pause/VBoxContainer/HBoxContainer/VBoxContainer" groups=["button"]]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_v83kh")
+text = "Voltar"
+
+[node name="Sair" type="Button" parent="PauseGame/Pause/VBoxContainer/HBoxContainer/VBoxContainer" groups=["button"]]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_v83kh")
+text = "sair"
+
+[node name="slime" parent="." instance=ExtResource("6_wdrlh")]
+position = Vector2(326, 344)
+scale = Vector2(0.61, 0.61)
+motion_mode = 1
+
+[connection signal="pressed" from="PauseGame/Pause/VBoxContainer/HBoxContainer/VBoxContainer/Voltar" to="." method="_on_voltar_pressed"]
+[connection signal="pressed" from="PauseGame/Pause/VBoxContainer/HBoxContainer/VBoxContainer/Sair" to="." method="_on_sair_pressed"]

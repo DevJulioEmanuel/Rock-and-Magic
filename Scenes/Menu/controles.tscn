@@ -1,0 +1,105 @@
+[gd_scene load_steps=4 format=3 uid="uid://cp2kjvgqj5vmn"]
+
+[ext_resource type="Script" uid="uid://dh1xjlt52m4yb" path="res://Scenes/Menu/controles.gd" id="1_610w7"]
+[ext_resource type="FontFile" uid="uid://bdb4gd21bmoqq" path="res://Assets/Fonts/Pixel NES.otf" id="1_p88nj"]
+[ext_resource type="VideoStream" uid="uid://ddav2y4ege5x6" path="res://Scenes/Menu/2025-07-10-21-51-06.ogv" id="3_5pc5s"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_610w7")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 638.0
+offset_bottom = 360.0
+stream = ExtResource("3_5pc5s")
+volume_db = -80.0
+autoplay = true
+expand = true
+loop = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -37.0
+offset_right = 146.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.965, 0.965)
+size_flags_vertical = 8
+alignment = 1
+
+[node name="Feito por" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_p88nj")
+theme_override_font_sizes/font_size = 16
+text = "Feito por"
+
+[node name="Julio Emanuel" type="Button" parent="HBoxContainer" groups=["button"]]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_p88nj")
+text = "Julio Emanuel"
+flat = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 35.0
+offset_right = 531.0
+offset_bottom = 288.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_p88nj")
+theme_override_font_sizes/font_size = 55
+text = "MARIOZINHO"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_p88nj")
+text = "Mover-se - A W S D"
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_p88nj")
+text = "Atacar - Espaço"
+
+[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_p88nj")
+text = "Abrir Inventário - TAB"
+
+[node name="Voltar" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer" groups=["button"]]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_p88nj")
+text = "Voltar"
