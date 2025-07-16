@@ -1,9 +1,10 @@
-[gd_scene load_steps=68 format=3 uid="uid://chdrj7nawoihf"]
+[gd_scene load_steps=70 format=3 uid="uid://chdrj7nawoihf"]
 
 [ext_resource type="Texture2D" uid="uid://banp26rqcnr85" path="res://Assets/Sprites/Player/Player.png" id="1_td325"]
+[ext_resource type="Script" uid="uid://4i25slik7hp4" path="res://Scripts/espada_hitbox.gd" id="2_nt1do"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_td325"]
-size = Vector2(13, 3)
+size = Vector2(13, 4)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iy5t5"]
 atlas = ExtResource("1_td325")
@@ -533,14 +534,31 @@ animations = [{
 "speed": 9.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cyx1q"]
+radius = 7.0
+height = 24.0
+
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["character"]]
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.5, 5.5)
+position = Vector2(1.5, 5)
 shape = SubResource("RectangleShape2D_td325")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, 0)
 sprite_frames = SubResource("SpriteFrames_0ygmh")
-animation = &"parado_down"
+animation = &"atack_up"
+frame = 3
+frame_progress = 1.0
+
+[node name="EspadaHitbox" type="Area2D" parent="."]
+collision_mask = 3
+script = ExtResource("2_nt1do")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EspadaHitbox"]
+position = Vector2(1, -3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_cyx1q")
+
+[connection signal="body_entered" from="EspadaHitbox" to="EspadaHitbox" method="_on_body_entered"]

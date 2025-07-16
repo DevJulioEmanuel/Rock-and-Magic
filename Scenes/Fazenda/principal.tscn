@@ -137,7 +137,22 @@ theme_override_fonts/font = ExtResource("5_v83kh")
 text = "sair"
 
 [node name="slime" parent="." instance=ExtResource("6_wdrlh")]
-position = Vector2(326, 344)
+position = Vector2(485, 349)
+scale = Vector2(0.61, 0.61)
+motion_mode = 1
+
+[node name="slime2" parent="." instance=ExtResource("6_wdrlh")]
+position = Vector2(384, 334)
+scale = Vector2(0.61, 0.61)
+motion_mode = 1
+
+[node name="slime3" parent="." instance=ExtResource("6_wdrlh")]
+position = Vector2(344, 360)
+scale = Vector2(0.61, 0.61)
+motion_mode = 1
+
+[node name="slime4" parent="." instance=ExtResource("6_wdrlh")]
+position = Vector2(295, 295)
 scale = Vector2(0.61, 0.61)
 motion_mode = 1
 

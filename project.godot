@@ -27,6 +27,7 @@ window/stretch/mode="canvas_items"
 
 button=""
 character=""
+inimigo=""
 
 [input]
 

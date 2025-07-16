@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dmd3waogult7r"]
+[gd_scene load_steps=27 format=3 uid="uid://dmd3waogult7r"]
 
 [ext_resource type="Script" uid="uid://b7ll60lv42eyw" path="res://Scripts/Personagem/slime.gd" id="1_45yc1"]
 [ext_resource type="Texture2D" uid="uid://b6nerlk4s4gqj" path="res://Assets/Sprites/Enemies/Slime_Green.png" id="1_o3xla"]
@@ -162,24 +162,25 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o3xla"]
-size = Vector2(20, 19)
+size = Vector2(20, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_45yc1"]
 radius = 206.061
 
-[node name="slime" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_45yc1"]
+size = Vector2(22, 18)
+
+[node name="slime" type="CharacterBody2D" groups=["inimigo"]]
 collision_layer = 2
 script = ExtResource("1_45yc1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5vwgu")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
-frame_progress = 0.648213
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 show_behind_parent = true
-position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_o3xla")
 
 [node name="DetectionArea" type="Area2D" parent="."]
@@ -187,5 +188,16 @@ shape = SubResource("RectangleShape2D_o3xla")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_45yc1")
 
+[node name="Damage" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage"]
+shape = SubResource("RectangleShape2D_45yc1")
+
+[node name="DamageTimer" type="Timer" parent="Damage"]
+wait_time = 0.6
+
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="Damage" to="." method="_on_damage_body_entered"]
+[connection signal="body_exited" from="Damage" to="." method="_on_damage_body_exited"]
+[connection signal="timeout" from="Damage/DamageTimer" to="." method="_on_damage_timer_timeout"]
