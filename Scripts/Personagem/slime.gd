@@ -50,9 +50,10 @@ func knockback(direcao: Vector2) -> void:
 	knockback_timer = knockback_time
 	
 	
-func _on_detection_area_body_entered(_body:CharacterBody2D) -> void:
-	if _body.is_in_group("character"):
-		_play_ref = _body
+func _on_detection_area_body_entered(body:Node) -> void:
+	if body.is_in_group("character"):
+		_play_ref = body
+	pass
 
 
 func _on_detection_area_body_exited(body:CharacterBody2D) -> void:
@@ -83,4 +84,4 @@ func _on_damage_body_exited(_body: Node2D) -> void:
 
 func _on_damage_timer_timeout() -> void:
 	if player_in_area:
-		get_node("/root/Principal/CharacterBody2D").hit(2, 0, 0)
+			get_node("/root/Principal/CharacterBody2D").hit(2, 0, 0)

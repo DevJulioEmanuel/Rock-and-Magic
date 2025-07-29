@@ -20,5 +20,5 @@ func on_button_pressed(button: Button) -> void:
 			OS.shell_open("https://www.instagram.com/julioemanuelps/")
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_adelta: float) -> void:
 	pass

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0w41rp2a3x4g"
-path="res://.godot/imported/icon.png-9ecc599b6940aa90ca4e52787c2bcc07.ctex"
+uid="uid://bef4tssabv7bs"
+path="res://.godot/imported/Mariozinho photo.png-d703aa621b2f86a1792b90df66535786.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/icon.png"
-dest_files=["res://.godot/imported/icon.png-9ecc599b6940aa90ca4e52787c2bcc07.ctex"]
+source_file="res://Mariozinho photo.png"
+dest_files=["res://.godot/imported/Mariozinho photo.png-d703aa621b2f86a1792b90df66535786.ctex"]
 
 [params]
 

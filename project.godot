@@ -13,14 +13,12 @@ config_version=5
 config/name="Mariozinho"
 run/main_scene="uid://cjaf72p644208"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://Assets/Icon/icon.png"
-run/icon="res://caminho/para/seu_icone.png"
+config/icon="uid://dqgtcsveycy5"
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [global_group]
