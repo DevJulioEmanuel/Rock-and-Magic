@@ -1,0 +1,94 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0f8p3rhleh55"]
+
+[ext_resource type="Script" uid="uid://bo7bbxtsank3f" path="res://Scripts/Controls/dialog_screen.gd" id="1_mi0qt"]
+[ext_resource type="Texture2D" uid="uid://dv5hhigp3lk7l" path="res://Assets/Sprites/NPCS/Clover/faceset.png" id="2_jj8af"]
+[ext_resource type="Texture2D" uid="uid://b2mloh56jro1v" path="res://Assets/Sprites/NPCS/dialog_hud.png" id="2_x0idr"]
+[ext_resource type="FontFile" uid="uid://bdb4gd21bmoqq" path="res://Assets/Fonts/Pixel NES.otf" id="3_x0idr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a0cyq"]
+line_spacing = 0.0
+font = ExtResource("3_x0idr")
+shadow_size = 2
+shadow_color = Color(0.113725, 0.113725, 0.113725, 0.619608)
+
+[node name="DialogScreen" type="Control" node_paths=PackedStringArray("_name", "dialog", "faceset")]
+custom_minimum_size = Vector2(416, 80)
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -192.0
+offset_top = -100.0
+offset_right = 192.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_mi0qt")
+_name = NodePath("TextureRect/HContainer/VBoxContainer/Name")
+dialog = NodePath("TextureRect/HContainer/VBoxContainer/Dialog")
+faceset = NodePath("TextureRect/HContainer/Borda/FaceSet")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_x0idr")
+
+[node name="HContainer" type="HBoxContainer" parent="TextureRect"]
+custom_minimum_size = Vector2(410, 75)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.0
+offset_top = -38.0
+offset_right = 190.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Borda" type="ColorRect" parent="TextureRect/HContainer"]
+custom_minimum_size = Vector2(72, 0)
+layout_mode = 2
+
+[node name="FaceSet" type="TextureRect" parent="TextureRect/HContainer/Borda"]
+custom_minimum_size = Vector2(70, 74)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -36.0
+offset_right = 35.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_jj8af")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/HContainer"]
+custom_minimum_size = Vector2(270, 0)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="TextureRect/HContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "Clover"
+label_settings = SubResource("LabelSettings_a0cyq")
+vertical_alignment = 1
+
+[node name="Dialog" type="RichTextLabel" parent="TextureRect/HContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_x0idr")
+theme_override_font_sizes/normal_font_size = 8
+text = "Olá luis, tudo bem com vocË?"

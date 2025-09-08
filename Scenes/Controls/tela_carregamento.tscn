@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpblcky7xlb31"]
+
+[ext_resource type="Script" uid="uid://bikebjigh32j3" path="res://Scripts/Controls/tela_carregamento.gd" id="1_ja5vj"]
+[ext_resource type="FontFile" uid="uid://bdb4gd21bmoqq" path="res://Assets/Fonts/Pixel NES.otf" id="2_0ghy0"]
+
+[node name="tela_carregamento" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ja5vj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.337581, 0.213525, 0.451312, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+texture_filter = 1
+offset_left = 498.0
+offset_top = 333.0
+offset_right = 631.0
+offset_bottom = 353.0
+theme_override_fonts/font = ExtResource("2_0ghy0")
+text = "Carregando..."

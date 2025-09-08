@@ -35,6 +35,7 @@ func _physics_process(_delta: float) -> void:
 	
 func death() -> void:
 	SPEED = 0
+	MissionManager.complete_mission("mission_2")
 	if !isdead:
 		$AnimatedSprite2D.play("death")
 	isdead = true

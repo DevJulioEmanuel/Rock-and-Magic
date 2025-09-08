@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://fwphnyi0jti6"]
+
+[ext_resource type="Script" uid="uid://cg5asvgd52qd2" path="res://Scripts/NPC/Clover/clover.gd" id="1_88wcf"]
+[ext_resource type="Texture2D" uid="uid://dh7j5yh3ekvps" path="res://Assets/Sprites/NPCS/Clover/Clover.png" id="1_gvnt1"]
+[ext_resource type="Script" uid="uid://bk6x518x780l6" path="res://Scripts/NPC/Clover/dialog_area.gd" id="2_fvgir"]
+[ext_resource type="Texture2D" uid="uid://5y0mrpa4v0ga" path="res://Assets/Sprites/NPCS/Clover/interacao.png" id="4_fcr23"]
+[ext_resource type="FontFile" uid="uid://bdb4gd21bmoqq" path="res://Assets/Fonts/Pixel NES.otf" id="5_edjyy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fvgir"]
+size = Vector2(12, 2.86111)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88wcf"]
+atlas = ExtResource("1_gvnt1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fcr23"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88wcf")
+}],
+"loop": true,
+"name": &"parado_down",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gvnt1"]
+radius = 16.7037
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Clover" type="CharacterBody2D" parent="." node_paths=PackedStringArray("hud") groups=["npc"]]
+scale = Vector2(0.9, 0.9)
+script = ExtResource("1_88wcf")
+hud = NodePath("DialogHud")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Clover" groups=["npc"]]
+y_sort_enabled = true
+position = Vector2(0, -0.319444)
+shape = SubResource("RectangleShape2D_fvgir")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Clover"]
+texture_filter = 1
+position = Vector2(0, -11.1111)
+sprite_frames = SubResource("SpriteFrames_fcr23")
+animation = &"parado_down"
+
+[node name="dialogArea" type="Area2D" parent="Clover"]
+script = ExtResource("2_fvgir")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Clover/dialogArea"]
+position = Vector2(0, -1.11111)
+shape = SubResource("CircleShape2D_gvnt1")
+
+[node name="DialogInteragir" type="Sprite2D" parent="Clover"]
+texture_filter = 1
+position = Vector2(0, -31.1111)
+scale = Vector2(0.695, 0.695)
+texture = ExtResource("4_fcr23")
+
+[node name="Interagir E" type="Label" parent="Clover/DialogInteragir"]
+texture_filter = 1
+offset_left = -20.7834
+offset_top = -4.79616
+offset_right = 211.217
+offset_bottom = 42.2038
+scale = Vector2(0.18, 0.18)
+theme_override_fonts/font = ExtResource("5_edjyy")
+theme_override_font_sizes/font_size = 26
+text = "Interagir: E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DialogHud" type="CanvasLayer" parent="Clover"]
+
+[connection signal="body_entered" from="Clover/dialogArea" to="Clover/dialogArea" method="_on_body_entered"]
+[connection signal="body_exited" from="Clover/dialogArea" to="Clover/dialogArea" method="_on_body_exited"]

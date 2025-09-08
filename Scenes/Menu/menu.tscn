@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cjaf72p644208"]
 
 [ext_resource type="Script" uid="uid://711nyren13o0" path="res://Scenes/Menu/buttons.gd" id="1_3qr6s"]
-[ext_resource type="VideoStream" uid="uid://ddav2y4ege5x6" path="res://Scenes/Menu/2025-07-10-21-51-06.ogv" id="2_j7r1e"]
+[ext_resource type="VideoStream" uid="uid://we1n8lgii845" path="res://Scenes/Menu/video_telainicial.ogv" id="2_3qr6s"]
 [ext_resource type="FontFile" uid="uid://bdb4gd21bmoqq" path="res://Assets/Fonts/Pixel NES.otf" id="3_8inha"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_3qr6s"]
@@ -22,7 +22,7 @@ layout_mode = 0
 offset_top = 1.0
 offset_right = 638.0
 offset_bottom = 360.0
-stream = ExtResource("2_j7r1e")
+stream = ExtResource("2_3qr6s")
 volume_db = -80.0
 autoplay = true
 expand = true
@@ -74,9 +74,11 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.6682, 0.00039525, 0.682934, 1)
 theme_override_fonts/font = ExtResource("3_8inha")
-theme_override_font_sizes/font_size = 55
-text = "MARIOZINHO"
+theme_override_font_sizes/font_size = 39
+text = "rock and magic"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]

@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
 @export_category("Variables")
-@export var _move_speed : float = 65.0
+@export var _move_speed : float = 45.0
 @export var _acceleration : float = 0.4
 @export var _friction : float = 0.3
 
+@onready var audioPassos = $AudioStreamPlayer2D
 var vida = 10
 var atacando: bool = false
 var ultima_tecla
@@ -38,6 +39,7 @@ func _physics_process(delta: float) -> void:
 		if slowtimer <= 0:
 			is_slowed = false
 	_move()
+	
 	move_and_slide()
 
 	if Input.is_action_just_pressed("action"):
@@ -90,27 +92,29 @@ func _move() -> void:
 	if is_slowed:
 		_move_speed = 25
 	else:
-		_move_speed = 65
-	if atacando:
-		return
+		_move_speed = 55.0
+	
 	var _direction: Vector2 = Vector2(
 		Input.get_axis("move_left", "move_right"),
 		Input.get_axis("move_up", "move_down")
 	).normalized()
-
+	move_sound(_direction)
+	if atacando:
+		return
 	if _direction != Vector2.ZERO:
 		velocity.x = lerp(velocity.x, _direction.x * _move_speed, _acceleration)
 		velocity.y = lerp(velocity.y, _direction.y * _move_speed, _acceleration)
-
+		
+		
 		# Animação baseada na direção
 		if _direction.x < 0:
-			$AnimatedSprite2D.flip_h = true
+			$AnimatedSprite2D.flip_h = false
 			ultima_tecla = "left"
 			$AnimatedSprite2D.play("left")	
 			$EspadaHitbox.position = Vector2(-4, 3)
 			$EspadaHitbox.rotation = 80
 		elif _direction.x > 0:
-			$AnimatedSprite2D.flip_h = false
+			$AnimatedSprite2D.flip_h = true
 			ultima_tecla = "right"
 			$AnimatedSprite2D.play("right")
 			$EspadaHitbox.position = Vector2(8, 3)
@@ -130,12 +134,20 @@ func _move() -> void:
 		velocity.x = lerp(velocity.x, 0.0 , _friction)
 		velocity.y = lerp(velocity.y, 0.0, _friction)
 		if ultima_tecla == "left":
-			$AnimatedSprite2D.flip_h = true
+			$AnimatedSprite2D.flip_h = false
 			$AnimatedSprite2D.play("parado_left")
 		elif  ultima_tecla == "right":
-			$AnimatedSprite2D.flip_h = false
+			$AnimatedSprite2D.flip_h = true
 			$AnimatedSprite2D.play("parado_right")
 		elif  ultima_tecla == "up":
 			$AnimatedSprite2D.play("parado_up")
 		elif  ultima_tecla == "down":
 			$AnimatedSprite2D.play("parado_down")
+
+func move_sound(direction) -> void:
+	if direction == Vector2.ZERO or atacando==true:
+		
+		audioPassos.stop()
+	elif direction != Vector2.ZERO and not audioPassos.playing:
+		audioPassos.play()
+	

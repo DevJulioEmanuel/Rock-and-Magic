@@ -15,4 +15,5 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("inimigo"):
 		var direcao = (body.global_position - global_position).normalized()
 		body.dano(1, direcao)
+	
 		
