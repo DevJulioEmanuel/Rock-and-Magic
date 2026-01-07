@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=3 uid="uid://ee3jbp0jpu2"]
+
+[ext_resource type="Script" uid="uid://drs10isobabxc" path="res://Scripts/Menu/criar_sala.gd" id="1_1xjsl"]
+[ext_resource type="VideoStream" uid="uid://we1n8lgii845" path="res://Scenes/Menu/video_telainicial.ogv" id="1_830j4"]
+[ext_resource type="FontFile" uid="uid://bdb4gd21bmoqq" path="res://Assets/Fonts/Pixel NES.otf" id="2_ayquu"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1xjsl")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 638.0
+offset_bottom = 360.0
+stream = ExtResource("1_830j4")
+volume_db = -80.0
+autoplay = true
+expand = true
+loop = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -138.0
+offset_top = 96.0
+offset_right = 139.0
+offset_bottom = -95.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_ayquu")
+text = "DIGITE SEU NOME"
+horizontal_alignment = 1
+
+[node name="input_name" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_ayquu")
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_ayquu")
+text = "Digite o IP do Servidor"
+
+[node name="InputIP" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_ayquu")
+alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ayquu")
+text = "Nome da Sala"
+horizontal_alignment = 1
+
+[node name="InputSala" type="LineEdit" parent="VBoxContainer"]
+modulate = Color(0.85109, 0.886495, 0.973134, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ayquu")
+alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_fonts/font = ExtResource("2_ayquu")
+text = "CRIAR/ENTRAR
+"

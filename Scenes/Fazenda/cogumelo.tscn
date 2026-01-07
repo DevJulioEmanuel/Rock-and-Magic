@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0i617jay2ug1"]
+
+[ext_resource type="Script" uid="uid://boyy1y25udx80" path="res://Scripts/Mapa/cogumelo/cogumelo.gd" id="1_0rrwh"]
+[ext_resource type="Texture2D" uid="uid://4egkipudlmhf" path="res://Assets/Sprites/cogumelo.png" id="1_urrse"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0rrwh"]
+size = Vector2(13, 14)
+
+[node name="Cogumelo" type="Area2D"]
+script = ExtResource("1_0rrwh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3.5, -4)
+shape = SubResource("RectangleShape2D_0rrwh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(22, -27)
+scale = Vector2(1.00359, 1)
+texture = ExtResource("1_urrse")

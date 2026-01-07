@@ -11,7 +11,7 @@ func _ready() -> void:
 func on_button_pressed(button: Button) -> void:
 	match button.name:
 		"Jogar":
-			get_tree().change_scene_to_file("res://Scenes/Fazenda/principal.tscn")
+			get_tree().change_scene_to_file("res://Scenes/Menu/Criar_sala.tscn")
 		"Controles":
 			get_tree().change_scene_to_file("res://Scenes/Menu/controles.tscn")
 		"Sair":

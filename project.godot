@@ -19,6 +19,7 @@ config/icon="uid://gg87wqageaf0"
 
 global="*res://Scripts/Controls/global.gd"
 MissionManager="*res://Scenes/Missions/mission_manager.tscn"
+Network="*res://Scripts/Network/NetworkManager.gd"
 
 [display]
 

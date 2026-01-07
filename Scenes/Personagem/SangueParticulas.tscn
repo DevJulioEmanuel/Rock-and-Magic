@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0c1p8mf068lj"]
+
+[ext_resource type="Script" uid="uid://bl5r3eqwlgppu" path="res://Scripts/Mapa/cpu_particles_2d.gd" id="1_x42hp"]
+
+[sub_resource type="Gradient" id="Gradient_x42hp"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y7cjf"]
+gradient = SubResource("Gradient_x42hp")
+width = 8
+height = 8
+fill = 2
+
+[sub_resource type="Curve" id="Curve_y7cjf"]
+_data = [Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Gradient" id="Gradient_y7cjf"]
+colors = PackedColorArray(0.685737, 0, 0, 1, 0.682353, 0, 0, 0)
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+emitting = false
+amount = 32
+texture = SubResource("GradientTexture2D_y7cjf")
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+damping_min = 50.0
+damping_max = 50.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_y7cjf")
+color = Color(0.682353, 0, 0, 1)
+color_ramp = SubResource("Gradient_y7cjf")
+script = ExtResource("1_x42hp")

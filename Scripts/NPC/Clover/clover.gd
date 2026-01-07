@@ -16,7 +16,7 @@ var dialog_data: Dictionary = {
 	},
 	2: {
 		"title": "Clover",
-		"dialog": "Ele é verde, e gosmento. Estddddddddddddddddddddddddddddddsaava indo em direção a sua casa.",
+		"dialog": "Ele é verde, e gosmento. Estava indo em direção a sua casa.",
 		"faceset": "res://Assets/Sprites/NPCS/Clover/faceset.png"
 	},
 	3: {
