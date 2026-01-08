@@ -23,7 +23,6 @@ var ultimo_agressor_id = -1
 
 var _network_timer: float = 0.0
 const NETWORK_TICK_RATE: float = 0.05 
-# -------------------------------
 
 #nkockback
 var knockback_vector = Vector2.ZERO
@@ -55,7 +54,6 @@ func _physics_process(delta: float) -> void:
 	if isdead:
 		return
 	checar_interacao_chao()
-	# Lógica de Knockback e Slow
 	if knockback_timer > 0:
 		knockback_timer -= delta
 		velocity = knockback_vector
@@ -73,10 +71,8 @@ func _physics_process(delta: float) -> void:
 		_move()
 		move_and_slide()
 
-	# --- LÓGICA DE ENVIO LIMITADO (MODIFICADO) ---
 	_network_timer += delta
 	
-	# Só entra aqui se o tempo passou E se o player está se movendo
 	if _network_timer >= NETWORK_TICK_RATE:
 		_network_timer = 0.0
 
