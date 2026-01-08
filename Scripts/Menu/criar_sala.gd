@@ -7,7 +7,7 @@ extends Control
 
 func _ready():
 	botao.pressed.connect(_on_botao_pressed)
-	
+	Network.conexao_falhou.connect(_on_falha_conexao)
 	Network.conectado_ao_servidor.connect(_on_conectado)
 
 func _on_botao_pressed():
@@ -29,3 +29,13 @@ func _on_botao_pressed():
 func _on_conectado():
 	print("Trocando para o mundo do jogo...")
 	get_tree().change_scene_to_file("res://Scenes/Fazenda/principal.tscn") 
+	
+func _on_falha_conexao():
+	$Label.visible = true
+	$Label.text = "Falha ao conectar!"
+
+	await get_tree().create_timer(2.0).timeout
+
+	$Label.visible = false 
+	botao.disabled = false
+	botao.text = "Conectar"

@@ -82,3 +82,21 @@ size_flags_vertical = 10
 theme_override_fonts/font = ExtResource("2_ayquu")
 text = "CRIAR/ENTRAR
 "
+
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 202.0
+offset_top = 294.0
+offset_right = 429.0
+offset_bottom = 327.0
+theme_override_fonts/font = ExtResource("2_ayquu")
+theme_override_font_sizes/font_size = 20
+
+[node name="ColorRect" type="ColorRect" parent="Label"]
+z_index = -1
+layout_mode = 0
+offset_left = -8.0
+offset_right = 230.0
+offset_bottom = 27.0
+color = Color(0.815686, 0.25098, 0.25098, 1)

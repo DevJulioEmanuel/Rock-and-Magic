@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=4 uid="uid://c0rqulkg34f4"]
+[gd_scene load_steps=8 format=4 uid="uid://c0rqulkg34f4"]
 
 [ext_resource type="Script" uid="uid://joq6y8myt6pp" path="res://Scenes/Fazenda/principal.gd" id="1_r8ljs"]
 [ext_resource type="PackedScene" uid="uid://d0seevesvct3l" path="res://Scenes/Fazenda/mapa.tscn" id="3_c6yxb"]
 [ext_resource type="PackedScene" uid="uid://chdrj7nawoihf" path="res://Scenes/Personagem/mariozinho.tscn" id="3_wdrlh"]
 [ext_resource type="PackedScene" uid="uid://fwphnyi0jti6" path="res://Scenes/Personagem/Clover.tscn" id="5_tpsac"]
-[ext_resource type="FontFile" uid="uid://bdb4gd21bmoqq" path="res://Assets/Fonts/Pixel NES.otf" id="5_v83kh"]
 [ext_resource type="PackedScene" uid="uid://d0i617jay2ug1" path="res://Scenes/Fazenda/cogumelo.tscn" id="5_wdrlh"]
+[ext_resource type="PackedScene" uid="uid://p60lid020ope" path="res://Scenes/Controls/pause_game.tscn" id="6_tpsac"]
+[ext_resource type="PackedScene" uid="uid://ci2j0gs4ti27d" path="res://Scenes/KillFeed.tscn" id="7_tpsac"]
 
 [node name="Principal" type="Node2D"]
 y_sort_enabled = true
@@ -74,115 +75,8 @@ position = Vector2(753, 147)
 
 [node name="Controles" type="Node2D" parent="."]
 
-[node name="PauseGame" type="CanvasLayer" parent="Controles"]
+[node name="KillFeed" parent="Controles" instance=ExtResource("7_tpsac")]
 
-[node name="Pause" type="Control" parent="Controles/PauseGame"]
-process_mode = 3
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="Controles/PauseGame/Pause"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.0896, 0.56, 0.31696, 1)
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Controles/PauseGame/Pause"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 182.0
-offset_top = 322.0
-offset_right = 456.0
-offset_bottom = 350.0
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.965, 0.965)
-size_flags_vertical = 8
-alignment = 1
-
-[node name="Feito por" type="Label" parent="Controles/PauseGame/Pause/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("5_v83kh")
-theme_override_font_sizes/font_size = 16
-text = "Feito por"
-
-[node name="Julio Emanuel" type="Button" parent="Controles/PauseGame/Pause/HBoxContainer" groups=["button"]]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("5_v83kh")
-text = "Julio Emanuel"
-flat = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Controles/PauseGame/Pause"]
-layout_mode = 0
-offset_left = 109.0
-offset_top = 35.0
-offset_right = 531.0
-offset_bottom = 288.0
-alignment = 1
-
-[node name="Label" type="Label" parent="Controles/PauseGame/Pause/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme_override_fonts/font = ExtResource("5_v83kh")
-theme_override_font_sizes/font_size = 55
-text = "MARIOZINHO"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Controles/PauseGame/Pause/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Controles/PauseGame/Pause/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 20
-alignment = 1
-
-[node name="Label" type="Label" parent="Controles/PauseGame/Pause/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_v83kh")
-text = "Mover-se - A W S D"
-
-[node name="Label2" type="Label" parent="Controles/PauseGame/Pause/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_v83kh")
-text = "Atacar - Espaço"
-
-[node name="Label3" type="Label" parent="Controles/PauseGame/Pause/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_v83kh")
-text = "Abrir Inventário - TAB"
-
-[node name="Voltar" type="Button" parent="Controles/PauseGame/Pause/VBoxContainer/HBoxContainer/VBoxContainer" groups=["button"]]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_v83kh")
-text = "Voltar"
-
-[node name="Sair" type="Button" parent="Controles/PauseGame/Pause/VBoxContainer/HBoxContainer/VBoxContainer" groups=["button"]]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_v83kh")
-text = "sair"
-
-[node name="Node2D" type="Node2D" parent="Controles/PauseGame"]
-
-[connection signal="pressed" from="Controles/PauseGame/Pause/VBoxContainer/HBoxContainer/VBoxContainer/Voltar" to="." method="_on_voltar_pressed"]
-[connection signal="pressed" from="Controles/PauseGame/Pause/VBoxContainer/HBoxContainer/VBoxContainer/Sair" to="." method="_on_sair_pressed"]
+[node name="PauseGame" parent="Controles" instance=ExtResource("6_tpsac")]
 
 [editable path="Mapa"]

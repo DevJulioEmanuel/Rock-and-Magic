@@ -1,0 +1,117 @@
+[gd_scene load_steps=3 format=3 uid="uid://p60lid020ope"]
+
+[ext_resource type="Script" uid="uid://bsprmdrdlbkn1" path="res://Scenes/Controls/pause_game.gd" id="1_5a3rh"]
+[ext_resource type="FontFile" uid="uid://bdb4gd21bmoqq" path="res://Assets/Fonts/Pixel NES.otf" id="1_d1eml"]
+
+[node name="PauseGame" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_5a3rh")
+
+[node name="Pause" type="Control" parent="."]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Pause"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0896, 0.56, 0.31696, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pause"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 182.0
+offset_top = 322.0
+offset_right = 456.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.965, 0.965)
+size_flags_vertical = 8
+alignment = 1
+
+[node name="Feito por" type="Label" parent="Pause/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_d1eml")
+theme_override_font_sizes/font_size = 16
+text = "Feito por"
+
+[node name="Julio Emanuel" type="Button" parent="Pause/HBoxContainer" groups=["button"]]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_d1eml")
+text = "Julio Emanuel"
+flat = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause"]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 35.0
+offset_right = 531.0
+offset_bottom = 288.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Pause/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_d1eml")
+theme_override_font_sizes/font_size = 55
+text = "MARIOZINHO"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pause/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="Pause/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_d1eml")
+text = "Mover-se - A W S D"
+
+[node name="Label2" type="Label" parent="Pause/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_d1eml")
+text = "Atacar - Espaço"
+
+[node name="Label3" type="Label" parent="Pause/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_d1eml")
+text = "Abrir Inventário - TAB"
+
+[node name="Voltar" type="Button" parent="Pause/VBoxContainer/HBoxContainer/VBoxContainer" groups=["button"]]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_d1eml")
+text = "Voltar"
+
+[node name="Sair" type="Button" parent="Pause/VBoxContainer/HBoxContainer/VBoxContainer" groups=["button"]]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_d1eml")
+text = "sair"
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[connection signal="pressed" from="Pause/VBoxContainer/HBoxContainer/VBoxContainer/Voltar" to="." method="_on_voltar_pressed"]
+[connection signal="pressed" from="Pause/VBoxContainer/HBoxContainer/VBoxContainer/Sair" to="." method="_on_sair_pressed"]

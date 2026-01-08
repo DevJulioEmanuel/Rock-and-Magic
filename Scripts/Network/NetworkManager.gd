@@ -10,6 +10,8 @@ signal jogador_morreu(id)
 signal knockback_aplicado(id, direcao)
 signal jogador_curou(id)
 signal item_destruido(nome_do_item)
+signal nova_mensagem_feed(texto)
+signal conexao_falhou
 
 var meu_id := -1
 
@@ -17,6 +19,8 @@ var meu_id := -1
 var socket := StreamPeerTCP.new()
 var status = 0
 var buffer = ""
+var tempo_tentativa: float = 0.0
+const TIMEOUT_LIMITE: float = 5.0
 
 var sala_desejada = ""
 var nome_jogador = ""
@@ -25,13 +29,28 @@ func conectar_ao_servidor(ip_digitado, porta, nome_sala, nome):
 	sala_desejada = nome_sala
 	nome_jogador = nome
 	print("Conectando em: ", ip_digitado)
+	tempo_tentativa = 0.0
 	socket.connect_to_host(ip_digitado, porta)
 	socket.set_no_delay(true)
 
 func _process(delta):
 	socket.poll()
 	var novo_status = socket.get_status()
-	
+	if novo_status == StreamPeerTCP.STATUS_CONNECTING:
+		tempo_tentativa += delta        
+		if tempo_tentativa >= TIMEOUT_LIMITE:
+			print("❌ TIMEOUT: O servidor demorou demais.")
+			socket.disconnect_from_host()
+			emit_signal("conexao_falhou")
+			status = StreamPeerTCP.STATUS_NONE
+			return
+
+	elif novo_status == StreamPeerTCP.STATUS_ERROR:
+		print("❌ ERRO IMEDIATO: Não foi possível conectar.")
+		socket.disconnect_from_host()
+		emit_signal("conexao_falhou")
+		status = StreamPeerTCP.STATUS_NONE
+		return
 	if novo_status != status:
 		status = novo_status
 		if status == StreamPeerTCP.STATUS_CONNECTED:
@@ -52,6 +71,15 @@ func _ler_dados():
 			var msg_json = split[0]
 			buffer = split[1]
 			_processar_pacote(msg_json)
+	
+func desconectar_do_servidor():
+	print("Encerrando conexão...")
+	socket.disconnect_from_host() 
+	status = StreamPeerTCP.STATUS_NONE 
+	meu_id = -1 
+	buffer = "" 
+	sala_desejada = ""
+	nome_jogador = ""
 
 func _processar_pacote(json_str):
 	var json = JSON.new()
@@ -91,6 +119,9 @@ func _processar_pacote(json_str):
 		
 	elif dados["cmd"] == "destruir_item":
 		emit_signal("item_destruido", dados["nome_item"])
+	
+	elif dados["cmd"] == "FEED":
+		emit_signal("nova_mensagem_feed", dados["msg"])
 		
 func enviar_mensagem(dict_msg):
 	if status == StreamPeerTCP.STATUS_CONNECTED:

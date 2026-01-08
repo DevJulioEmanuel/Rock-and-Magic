@@ -18,6 +18,7 @@ var atacando: bool = false
 var ultima_tecla
 var isdead: bool = false
 var em_knockback = false
+var ultimo_agressor_id = -1
 
 
 var _network_timer: float = 0.0
@@ -113,7 +114,7 @@ func hit(dano: int) -> void:
 	if vida <= 0 :
 		if not isdead:
 			$AnimatedSprite2D.play("death")
-			Network.enviar_mensagem({"cmd": "DIE"})
+			Network.enviar_mensagem({"cmd": "DIE", "killer_id": ultimo_agressor_id})
 			botao_respawn.visible = true
 		isdead = true
 		
@@ -155,6 +156,7 @@ func _action() -> void:
 	
 
 func _on_network_damage(dano, agressor_id, direcao_do_hit):
+	ultimo_agressor_id = agressor_id
 	hit(dano)
 	
 func knockback(direcao: Vector2):
@@ -235,6 +237,7 @@ func move_sound(direction) -> void:
 	
 
 func _on_botao_respawn_pressed() -> void:
+	ultimo_agressor_id = -1
 	vida = 5
 	isdead = false
 	

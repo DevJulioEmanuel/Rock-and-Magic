@@ -13,6 +13,7 @@ func _ready() -> void:
 	Network.connect("jogador_atacou", _on_jogador_atacou)
 	Network.connect("jogador_curou", _on_jogador_curou)
 	Network.connect("item_destruido", _on_item_destruido)
+	Network.connect("nova_mensagem_feed", _on_feed_chegou)
 	Network.knockback_aplicado.connect(_on_knockback)
 	Network.jogador_morreu.connect(_on_jogador_morreu)
 
@@ -27,16 +28,6 @@ func _unhandled_input(event):
 		else:
 			$Controles/PauseGame/Pause.visible = false
 			get_tree().paused = false
-
-func _on_voltar_pressed() -> void:
-	$Controles/PauseGame/Pause.visible = false
-	get_tree().paused = false
-
-
-func _on_sair_pressed() -> void:
-	get_tree().paused = false
-	get_tree().change_scene_to_file("res://Scenes/Menu/menu.tscn")
-	
 
 
 #PARTE DO MULTIPLAYER
@@ -80,11 +71,12 @@ func _on_jogador_morreu(id):
 		
 func _on_item_destruido(nome_item):
 	print("Rede mandou destruir: ", nome_item)
-
-	# Procura o nó pelo nome dentro da cena atual (recursive = true procura em filhos e netos)
 	var item = find_child(nome_item, true, false)
-
 	if item:
 		item.queue_free()
 	else:
 		print("Não achei o item pra destruir: ", nome_item)
+	
+func _on_feed_chegou(texto):
+	# Chama a função lá da UI que criamos no passo 1
+	$Controles/KillFeed.add_mensagem(texto)
