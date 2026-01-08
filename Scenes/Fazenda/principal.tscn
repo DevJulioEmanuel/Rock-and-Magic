@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://c0rqulkg34f4"]
+[gd_scene load_steps=10 format=4 uid="uid://c0rqulkg34f4"]
 
 [ext_resource type="Script" uid="uid://joq6y8myt6pp" path="res://Scenes/Fazenda/principal.gd" id="1_r8ljs"]
 [ext_resource type="PackedScene" uid="uid://d0seevesvct3l" path="res://Scenes/Fazenda/mapa.tscn" id="3_c6yxb"]
@@ -7,6 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://d0i617jay2ug1" path="res://Scenes/Fazenda/cogumelo.tscn" id="5_wdrlh"]
 [ext_resource type="PackedScene" uid="uid://p60lid020ope" path="res://Scenes/Controls/pause_game.tscn" id="6_tpsac"]
 [ext_resource type="PackedScene" uid="uid://ci2j0gs4ti27d" path="res://Scenes/KillFeed.tscn" id="7_tpsac"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tpsac"]
+size = Vector2(123, 613)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vgpc4"]
+size = Vector2(642.5, 20)
 
 [node name="Principal" type="Node2D"]
 y_sort_enabled = true
@@ -78,5 +84,25 @@ position = Vector2(753, 147)
 [node name="KillFeed" parent="Controles" instance=ExtResource("7_tpsac")]
 
 [node name="PauseGame" parent="Controles" instance=ExtResource("6_tpsac")]
+
+[node name="LimitesMapa" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LimitesMapa"]
+position = Vector2(54.5, 177.5)
+shape = SubResource("RectangleShape2D_tpsac")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LimitesMapa"]
+position = Vector2(755, 181)
+shape = SubResource("RectangleShape2D_tpsac")
+
+[node name="LimitesMapaHorizontal" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LimitesMapaHorizontal"]
+position = Vector2(406.75, -53)
+shape = SubResource("RectangleShape2D_vgpc4")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LimitesMapaHorizontal"]
+position = Vector2(426, 464)
+shape = SubResource("RectangleShape2D_vgpc4")
 
 [editable path="Mapa"]

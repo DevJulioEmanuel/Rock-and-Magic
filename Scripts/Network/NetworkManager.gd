@@ -74,6 +74,7 @@ func _ler_dados():
 	
 func desconectar_do_servidor():
 	print("Encerrando conexão...")
+	enviar_mensagem({"cmd": "jogador_desconectou", "id_jogador": meu_id})
 	socket.disconnect_from_host() 
 	status = StreamPeerTCP.STATUS_NONE 
 	meu_id = -1 
